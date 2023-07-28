@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="map">
+      <div id="map"></div>
+      <button class="add__btn" id="add"><img src="../static/img/add.svg" alt="add"></button>
+      <div class="container">
+        <div class="add-popup" id="add-popup">
+          <div class="user">
+            <div class="user__info">
+              <h4 class="user__name">DaniilDanone</h4>
+              <a href="#" class="user__profile">мой профиль</a>
+            </div>
+            <img src="../static/img/user-avatar.jpg" alt="DaniilDanone">
+          </div>
+          <span>Люди поблизости</span>
+            {% for i in people %}
+              <div class="popup__item">
+                <div class="popup__item__content">
+                    {% if i.avatar_path %}
+                        <img src="{{ url_for('static', filename=i.avatar_path) }}" class="popup__img">
+                    {% else %}
+                        <img src="../static/img/avatars/profile.webp" class="popup__img">
+                    {% endif %}
+                  <div class="popup__info">
+                    <h2 class="popup__h2">{{ i.name }} {{ i.surname }}</h2>
+                    <p class="popup__info__text">{{ i.status }}</p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+      {% for i in people %}
+          <div class="marker__popup" id="{{ loop.index }}">
+            <button id="closeMarkerPopup"><img src="../static/img/close.svg" alt="" class="marker__close"></button>
+            <div class="marker__main__div">
+              <div class="marker__info">
+                <h2 class='marker__h2'>{{ i.name }} {{ i.surname }}</h2>
+                  {% if i.avatar_path %}
+                    <img src="{{ url_for('static', filename=i.avatar_path) }}" alt="" class="marker__img">
+                  {% else %}
+                    <img src="../static/img/avatars/profile.webp" alt="" class="marker__img">
+                  {% endif %}
+              </div>
+              <hr class='marker_hr'>
+              <p class="marker__text purple">
+                Открыт к предложениям
+              </p>
+              <p class="marker__text">
+                <b>Портфолио:</b>
+              </p>
+              <p class="marker__text">
+                https://github.com/
+              </p>
+              <p class="marker__text">
+                <b>Связь:</b>
+              </p>
+              <p class="marker__text">
+                https://vk.com/ponchik_johny
+              </p>
+
+
+            </div>
+          </div>
+  {% endfor %}
+
+  </section>
+{% endblock %}

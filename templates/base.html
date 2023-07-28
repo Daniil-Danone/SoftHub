@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/header.css">
+  <link rel="stylesheet" href="../static/css/reg-popup.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="stylesheet" href="../static/css/add-popup.css">
+  <link rel="stylesheet" href="../static/css/map.css">
+  <link rel="stylesheet" href="../static/css/registration.css">
+  <link rel="stylesheet" href="../static/css/marker-popup.css">
+  <link rel="stylesheet" href="../static/css/profile.css">
+  <link rel="icon" href="../static/img/logo.ico">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""
+  />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+        <div class="header__wrapper">
+            <div class="logo__container">
+                <img src="../static/img/logo.svg" alt="logo" class="logo">
+                <button class="burger" id="burger">
+                    <span class="burger__line" id="menu-icon"></span>
+                </button>
+                <h1 class="header__title"><a href="/">SoftHUB</a></h1>
+            </div>
+            <nav class="nav" id="nav">
+                <div class="nav__list">
+                    <a href="/map" class="nav__link">Карта</a>
+                    <span>•</span>
+                    <a href="/softskills" class="nav__link">SoftSkills</a>
+                    <span>•</span>
+                    <a href="#" class="nav__link">What we do</a>
+                    <span>•</span>
+                    <a href="#" class="nav__link">Контакты</a>
+                </div>
+            </nav>
+            {% if not current_user.is_authenticated %}
+                <button class="header__button" id="signin"><a href="#sign_in">Sign In</a></button>
+            {% else %}
+                {{ user.email }}
+                <a href="/logout">Выйти</a>
+            {% endif %}
+        </div>
+        {% if not current_user.is_authenticated and not reg_form %}
+            <div class="popup__reg" id="reg-popup">
+              <div class="popup__reg__content">
+                <button id="close"><img src="../static/img/close.svg" alt="close"></button>
+                <div class="form__header">
+                  <img src="../static/img/reg-logo.svg" class='img_reg'alt="">
+                  <h3 class="form__title">SoftHUB</h3>
+                </div>
+                <h4 class="form__subtitle">Log in with your email</h4>
+                <form class="form" method="post" novalidate enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token }}
+                  <div class="form__item">
+                    <h5 class="input__title">Email adress</h5>
+                    {{ form.email(class="form__input") }}
+                  </div>
+                  <div class="form__item">
+                    <h5 class="input__title">Password</h5>
+                    {{ form.password(class="form__input") }}
+                  </div>
+                    <button type="submit" class="form__button" id="form__button">Sign in</button>
+                </form>
+
+                <div class="line__div">
+                  <hr class='line'>
+                  <p class='line__text'>OR</p>
+                  <hr class='line'>
+                </div>
+                <h4 class="form__subtitle new__underline"><a href='/registration' class='a__form'>Create an Account</a></h4>
+              </div>
+            </div>
+        {% endif %}
+    </div>
+</header>
+  <main>
+      {% block content %}{% endblock %}
+  </main>
+  <footer></footer>
+<script src="../static/js/burger.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script src="../static/js/burger.js"></script>
+<script src="../static/js/map.js"></script>
+<script src="../static/js/add-popup.js"></script>
+<script src="../static/js/reg-popup.js"></script>
+</body>
+</html>

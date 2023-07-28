@@ -1,0 +1,71 @@
+.map {
+  position: relative;
+}
+
+.marker__popup {
+  display: none;
+  position: absolute;
+  top: calc(50% - 115px);
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 230px;
+  background: #fff;
+  z-index: 10000;
+  border-radius: 20px;
+}
+
+.marker__close {
+  border-radius: 9999px;
+  border: 1px solid #333333;
+}
+
+.popup__active {
+  display: block;
+}
+
+.marker__main__div {
+  width: 170px;
+  margin: 0 auto;
+}
+
+.marker__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marker__img {
+  max-width: 27px;
+  max-height: 27px;
+  border-radius: 999px;
+}
+
+.marker__h2 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.marker__text {
+  margin-top: 15px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.purple {
+  color: #701BC5;
+}
+
+.marker_hr {
+  margin-top: 10px;
+  border: 1px solid #333333;
+}

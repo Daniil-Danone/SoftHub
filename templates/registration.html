@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="popup__registr popup__active popup__registration" id="reg-popup">
+      <div class="popup__reg__content">
+        <div class="form__header">
+          <img src="../static/img/reg-logo.svg" class='img_reg'alt="">
+          <h3 class="form__title">SoftHUB</h3>
+        </div>
+        <h4 class="form__subtitle">Sign up with your email</h4>
+        <form class="form" method="post" novalidate enctype="multipart/form-data">
+            {{ reg_form.hidden_tag() }}
+            {{ reg_form.csrf_token }}
+          <div class="form__item">
+            <h5 class="input__title">Email adress</h5>
+            {{ reg_form.email(class="form__input") }}
+          </div>
+          <div class="form__item">
+            <h5 class="input__title">Password</h5>
+            {{ reg_form.password(class="form__input") }}
+          </div>
+            <button type="submit" class="form__button" id="form__button">Sign Up</button>
+        </form>
+
+        <div class="line__div">
+          <hr class='line'>
+          <p class='line__text'>OR</p>
+          <hr class='line'>
+        </div>
+        <h4 class="form__subtitle new__underline"><a href='/#sign_in' class='a__form'>Already have an account? Sign in!</a></h4>
+      </div>
+    </div>
+{% endblock %}
